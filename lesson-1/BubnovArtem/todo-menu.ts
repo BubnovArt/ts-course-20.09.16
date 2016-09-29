@@ -47,21 +47,14 @@ let menuList: menuList =  [
 function generateMenu (list: menuList): string {
     let str: string = `<ul>`;
     for (let a of list) {
-        if (a.title !== undefined && a.items !== undefined)
-        {
-            str += `<li><a class="title">${a.title}</a>`;
+        str += `<li><a class="title">${a.title}</a>`;
+        if(a.items) {
+            str += generateMenu(a.items)
         }
-        else if (a.title !== undefined)
-        {
-            str += `<li><a>${a.title}</a>`;
-        }
-        if (a.items !== undefined)
-        {
-            str += generateMenu(a.items);
-        }
-        str += `</li>`
+        str += '</li>';
     }
-    str += `</ul>`;
+    str += '</ul>';
+
     return str;
 }
 
